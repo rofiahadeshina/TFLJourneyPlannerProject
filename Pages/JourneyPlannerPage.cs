@@ -60,7 +60,7 @@ namespace TFLJourneyPlanner.Pages
 
         By fromFieldErrorMessage = By.CssSelector(".geolocation-box .field-validation-error #InputFrom-error");
         By toFieldErrorMessage = By.CssSelector(".field-validation-error #InputTo-error");
-        public void InputStartLocation(string startLocation)
+        public void InputDynamicStartLocation(string startLocation)
         {
 
             var fromMotherSpan = _driver.FindElement(fromLocationMotherSpan);
@@ -91,7 +91,7 @@ namespace TFLJourneyPlanner.Pages
 
         }
 
-        public void InputEndLocation(string endLocation)
+        public void InputDynamicEndLocation(string endLocation)
         {
 
             var motherSpan = _driver.FindElement(toLocationMotherSpan);

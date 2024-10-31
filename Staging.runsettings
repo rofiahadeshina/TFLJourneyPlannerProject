@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="baseUrl" value="https://tfl.gov.uk/plan-a-journey/?cid=plan-a-journey" />
+    <Parameter name="browser" value="chrome" />
+  </TestRunParameters>
+</RunSettings>

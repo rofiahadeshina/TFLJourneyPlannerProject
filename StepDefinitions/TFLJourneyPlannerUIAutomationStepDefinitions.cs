@@ -21,16 +21,16 @@ namespace TFLJourneyPlanner.StepDefinitions
 
         public void BeforeScenarioEditPreferences()
         {
-            _journeyPlannerPage.InputStartLocation("leic");
-            _journeyPlannerPage.InputEndLocation("cov");
+            _journeyPlannerPage.InputDynamicStartLocation("leic");
+            _journeyPlannerPage.InputDynamicEndLocation("cov");
             _journeyPlannerPage.SubmitPlanMyJourney();
         }
 
         public void BeforeScenarioViewDetails()
         {
             Console.WriteLine("Holla");
-            _journeyPlannerPage.InputStartLocation("leic");
-            _journeyPlannerPage.InputEndLocation("cov");
+            _journeyPlannerPage.InputDynamicStartLocation("leic");
+            _journeyPlannerPage.InputDynamicEndLocation("cov");
             _journeyPlannerPage.SubmitPlanMyJourney();
             _journeyPlannerPage.ClickEditPreferences();
             _journeyPlannerPage.SelectLeastWalkingRoute();
@@ -40,8 +40,8 @@ namespace TFLJourneyPlanner.StepDefinitions
         [When(@"a user inputs the start and destination location of their journey")]
         public void GivenAUserInputsTheStartAndDestinationLocationOfTheirJourney()
         {
-            _journeyPlannerPage.InputStartLocation("leic");
-            _journeyPlannerPage.InputEndLocation("cov");
+            _journeyPlannerPage.InputDynamicStartLocation("leic");
+            _journeyPlannerPage.InputDynamicEndLocation("cov");
 
         }
 
