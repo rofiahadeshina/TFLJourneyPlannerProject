@@ -119,7 +119,7 @@ namespace TFLJourneyPlanner.StepDefinitions
         {
             try
             {
-                if (_scenarioContext.TestError != null)  //this condition will always be true when a test failed
+                if (_scenarioContext.TestError != null)
                 {
                     string scenarioName = _scenarioContext.ScenarioInfo.Title;
                     string directory = AppDomain.CurrentDomain.BaseDirectory + @"Screenshots\";

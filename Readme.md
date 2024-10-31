@@ -19,7 +19,6 @@
 │   └── JourneyPlanner.feature
 │── SetUp/
 │   └── Context.cs
-│   └── WebDriverExtension.cs
 ├── BrowserFactories/
 │   └── ChromeBrowserFactory.cs
 │    └─ InternetExplorerBrowserFactory.cs
@@ -31,7 +30,7 @@
 * Pages: Contains the page object classes, each representing a different page.
 * Features: Holds Gherkin .feature files with test scenarios.
 * StepDefinitions: Maps steps in .feature files to C# code that performs actions, typically using page objects.
-* SetUp: Contains classes such setup and teardown methods for initializing and closing the browser and performing various driver activities on the browser
+* SetUp: Contains classes such setup and teardown methods for initializing and closing the browser
 * BrowserFactories: Helper classes, like browser management to spin up instances of browsers.
 
 The Pages folder contains the page object classes, which encapsulate:
@@ -70,6 +69,6 @@ The Pages folder contains the page object classes, which encapsulate:
     Non-Functional:
    
    - Measure the time taken to process and display journey results, especially under different loads. Ensure results load within an acceptable time frame.
-   - usability test to determine how user friendly it is
-   - Accessability testing 
+   - Usability test to ensure ease of use
+   - Test for Accessibility to ensure users with disabilities can use the widget (e.g. screen reader compatibility, keyboard navigation)
 

@@ -64,16 +64,6 @@ namespace TFLJourneyPlanner.StepDefinitions
         }
 
 
-        //[Then(@"the journey results should be visible")]
-        //public void ThenTheJourneyResultsShouldBeVisible()
-        //{
-        //   var jpResultfromLocation =  _journeyPlannerPage.ConfirmJpResultFromLocation();
-        //    Assert.That(jpResultfromLocation.Equals("Leicester Square Underground Station"));
-
-        //    var jpResultToLocation = _journeyPlannerPage.ConfirmJpResultToLocation();
-        //    Assert.That(jpResultToLocation.Equals("Covent Garden Underground Station"));
-        //}
-
         [Then(@"the walking and cyling times should be visible")]
         public void ThenTheWalkingAndCylingTimesShouldBeVisible()
         {
@@ -83,11 +73,8 @@ namespace TFLJourneyPlanner.StepDefinitions
             var cycleTime = _journeyPlannerPage.ConfirmCyclingTime();
             ClassicAssert.IsTrue(Regex.IsMatch(cycleTime, pattern));
 
-           //ClassicAssert.AreEqual(cycleTime, "1mins");
-
             var walkTime = _journeyPlannerPage.ConfirmWalkingTime();
             ClassicAssert.IsTrue(Regex.IsMatch(walkTime, pattern));
-            //ClassicAssert.AreEqual(walkTime, "6mins");
         }
 
         [When(@"a valid journey has been planned from ""([^""]*)"" to ""([^""]*)""")]
