@@ -8,7 +8,7 @@
 
 ### 3. **Automation Framework Design Approach and Development Decisions**
    - **Page Object Model (POM)**: The framework used for this project is a Page Object Model (POM) automation framework in Selenium with SpecFlow and C#. This design pattern that helps to organize and maintain UI tests by separating the test logic from the underlying page structure. This separation is achieved through the use of “page objects,” which are classes that represent the elements and actions on a particular page of the application. Here’s how this framework is structured:
-   
+```
 ├ TFLJourneyPlanner/
 ├── Pages/
 │   ├── JourneyPlannerPage.cs
@@ -26,7 +26,7 @@
 └── README.md
 └── Local.runsettings
 └── EnvironmentData.cs
-
+```
 
 * Pages: Contains the page object classes, each representing a different page.
 * Features: Holds Gherkin .feature files with test scenarios.
@@ -60,7 +60,7 @@ The Pages folder contains the page object classes, which encapsulate:
    - **Additonal Test Scenarios**: 
 
    
-### 7. **Additonal Test Scenarios**:s**
+### 7. **Additonal Test Scenarios**
      Functional: 
    - A user can plan a journey successfully based on arrival time Scenario
    - Recents tab display recently planned journeys
