@@ -116,13 +116,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 11
- testRunner.When("a user inputs the start and destination location of their journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("a user inputs the start \"Leicester Square Underground Station\" and destination lo" +
+                        "cation \"Covent Garden Underground Station\" of their journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
  testRunner.And("the user clicks on the plan my journey button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.Then("the journey results should be visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the journey results should be visible with \"Leicester Square Underground Station\"" +
+                        " to \"Covent Garden Underground Station\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
     testRunner.And("the walking and cyling times should be visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -217,7 +219,8 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 27
-    testRunner.Given("a valid journey has been planned with the least walking preference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("a valid journey has been planned from \"Leicester Square Underground Station\" to \"" +
+                        "Covent Garden Underground Station\" with the least walking preference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 28
     testRunner.When("I click on \"View Details\" for the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

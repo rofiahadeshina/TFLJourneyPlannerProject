@@ -60,12 +60,12 @@ namespace TFLJourneyPlanner.Pages
 
         By fromFieldErrorMessage = By.CssSelector(".geolocation-box .field-validation-error #InputFrom-error");
         By toFieldErrorMessage = By.CssSelector(".field-validation-error #InputTo-error");
-        public void InputDynamicStartLocation(string startLocation)
+        public void InputDynamicStartLocation(string startSuggestion, string startLocationStation)
         {
 
             var fromMotherSpan = _driver.FindElement(fromLocationMotherSpan);
             var fromInputEl = fromMotherSpan.FindElement(fromInputLocator);
-            fromInputEl.SendKeys(startLocation);
+            fromInputEl.SendKeys(startSuggestion);
 
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(suggestionsContainerLocator));
@@ -82,7 +82,7 @@ namespace TFLJourneyPlanner.Pages
 
                 var stationName = fromstopSearchSuggestion.Text;
 
-                if (stationName == "Leicester Square Underground Station")
+                if (stationName == startLocationStation)
                 {
                     fromstopSearchSuggestion.Click();
                     break;
@@ -91,11 +91,11 @@ namespace TFLJourneyPlanner.Pages
 
         }
 
-        public void InputDynamicEndLocation(string endLocation)
+        public void InputDynamicEndLocation(string endSuggestion, string endLocationStation)
         {
 
             var motherSpan = _driver.FindElement(toLocationMotherSpan);
-            motherSpan.FindElement(toInputLocator).SendKeys(endLocation);
+            motherSpan.FindElement(toInputLocator).SendKeys(endSuggestion);
 
             Thread.Sleep(2000);
 
@@ -117,7 +117,7 @@ namespace TFLJourneyPlanner.Pages
 
                 var stationName = stopSearchSuggestion.Text;
 
-                if (stationName == "Covent Garden Underground Station")
+                if (stationName == endLocationStation)
                 {
                     stopSearchSuggestion.Click();
                     break;

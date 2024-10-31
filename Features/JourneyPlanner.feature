@@ -8,9 +8,9 @@ Background:
 
 @PlanValidJourney
 Scenario: 01_Verify that a valid journey can be planned 
-	When a user inputs the start and destination location of their journey
+	When a user inputs the start "Leicester Square Underground Station" and destination location "Covent Garden Underground Station" of their journey
 	And the user clicks on the plan my journey button
-	Then the journey results should be visible
+	Then the journey results should be visible with "Leicester Square Underground Station" to "Covent Garden Underground Station"
     And the walking and cyling times should be visible
 
 
@@ -24,7 +24,7 @@ Scenario: 02_Verify that a user can edit journey preferences after planning a jo
 
 @ViewDetails
 Scenario: 03_View details and verify access information at Covent Garden
-    Given a valid journey has been planned with the least walking preference
+    Given a valid journey has been planned from "Leicester Square Underground Station" to "Covent Garden Underground Station" with the least walking preference
     When I click on "View Details" for the journey
     Then I should see complete access information for Covent Garden Underground Station
 

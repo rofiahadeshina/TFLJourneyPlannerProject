@@ -60,13 +60,16 @@ The Pages folder contains the page object classes, which encapsulate:
    - **Additonal Test Scenarios**: 
 
    
-### 7. **Additonal Test Scenarios**
+### 5. **Additonal Test Scenarios**
      Functional: 
    - A user can plan a journey successfully based on arrival time Scenario
    - Recents tab display recently planned journeys
    - Test Journey Planner for Out-of-Service Locations: verify that the widget provides an appropriate message or alternative route
+   - Verify that the widget functions consistently across multiple browsers (e.g., Chrome, Firefox, Safari, Edge) and browser versions.
    
     Non-Functional:
-   - Verify that the widget functions consistently across multiple browsers (e.g., Chrome, Firefox, Safari, Edge) and browser versions.
+   
    - Measure the time taken to process and display journey results, especially under different loads. Ensure results load within an acceptable time frame.
+   - usability test to determine how user friendly it is
+   - Accessability testing 
 

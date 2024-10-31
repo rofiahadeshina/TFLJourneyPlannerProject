@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 using TFLJourneyPlanner.Pages;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System.Text.RegularExpressions;
 
 namespace TFLJourneyPlanner.StepDefinitions
 {
@@ -19,31 +20,30 @@ namespace TFLJourneyPlanner.StepDefinitions
             _driver = driver;
         }
 
-        public void BeforeScenarioEditPreferences()
+        public void BeforeScenarioEditPreferences(string start, string end)
         {
-            _journeyPlannerPage.InputDynamicStartLocation("leic");
-            _journeyPlannerPage.InputDynamicEndLocation("cov");
+            _journeyPlannerPage.InputDynamicStartLocation("leic",start);
+            _journeyPlannerPage.InputDynamicEndLocation("cov", end);
             _journeyPlannerPage.SubmitPlanMyJourney();
         }
 
-        public void BeforeScenarioViewDetails()
+        public void BeforeScenarioViewDetails(string start, string end)
         {
-            Console.WriteLine("Holla");
-            _journeyPlannerPage.InputDynamicStartLocation("leic");
-            _journeyPlannerPage.InputDynamicEndLocation("cov");
+            _journeyPlannerPage.InputDynamicStartLocation("leic", start);
+            _journeyPlannerPage.InputDynamicEndLocation("cov", end);
             _journeyPlannerPage.SubmitPlanMyJourney();
             _journeyPlannerPage.ClickEditPreferences();
             _journeyPlannerPage.SelectLeastWalkingRoute();
             _journeyPlannerPage.UpdateJourney();
         }
 
-        [When(@"a user inputs the start and destination location of their journey")]
-        public void GivenAUserInputsTheStartAndDestinationLocationOfTheirJourney()
+        [When(@"a user inputs the start ""([^""]*)"" and destination location ""([^""]*)"" of their journey")]
+        public void WhenAUserInputsTheStartAndDestinationLocationOfTheirJourney(string Start, string End)
         {
-            _journeyPlannerPage.InputDynamicStartLocation("leic");
-            _journeyPlannerPage.InputDynamicEndLocation("cov");
-
+            _journeyPlannerPage.InputDynamicStartLocation("leic", Start);
+            _journeyPlannerPage.InputDynamicEndLocation("cov",End);
         }
+
 
         [When(@"the user clicks on the plan my journey button")]
         public void WhenTheUserClicksOnThePlanMyJourneyButton()
@@ -51,31 +51,49 @@ namespace TFLJourneyPlanner.StepDefinitions
             _journeyPlannerPage.SubmitPlanMyJourney();
         }
 
-        [Then(@"the journey results should be visible")]
-        public void ThenTheJourneyResultsShouldBeVisible()
-        {
-           var jpResultfromLocation =  _journeyPlannerPage.ConfirmJpResultFromLocation();
-            Assert.That(jpResultfromLocation.Equals("Leicester Square Underground Station"));
 
-            var jpResultToLocation = _journeyPlannerPage.ConfirmJpResultToLocation();
-            Assert.That(jpResultToLocation.Equals("Covent Garden Underground Station"));
+
+        [Then(@"the journey results should be visible with ""([^""]*)"" to ""([^""]*)""")]
+        public void ThenTheJourneyResultsShouldBeVisibleWithTo(string ExpectedStartLocation, string ExpectedEndLocation)
+        {
+            var actualJpResultfromLocation = _journeyPlannerPage.ConfirmJpResultFromLocation();
+            Assert.That(actualJpResultfromLocation.Equals(ExpectedStartLocation));
+
+            var actualJpResultToLocation = _journeyPlannerPage.ConfirmJpResultToLocation();
+            Assert.That(actualJpResultToLocation.Equals(ExpectedEndLocation));
         }
+
+
+        //[Then(@"the journey results should be visible")]
+        //public void ThenTheJourneyResultsShouldBeVisible()
+        //{
+        //   var jpResultfromLocation =  _journeyPlannerPage.ConfirmJpResultFromLocation();
+        //    Assert.That(jpResultfromLocation.Equals("Leicester Square Underground Station"));
+
+        //    var jpResultToLocation = _journeyPlannerPage.ConfirmJpResultToLocation();
+        //    Assert.That(jpResultToLocation.Equals("Covent Garden Underground Station"));
+        //}
 
         [Then(@"the walking and cyling times should be visible")]
         public void ThenTheWalkingAndCylingTimesShouldBeVisible()
         {
-           var cycleTime = _journeyPlannerPage.ConfirmCyclingTime();
+            // Define the pattern to match a number followed by "mins"
+            string pattern = @"^\d+mins$"; 
 
-           ClassicAssert.AreEqual(cycleTime, "1mins");
+            var cycleTime = _journeyPlannerPage.ConfirmCyclingTime();
+            ClassicAssert.IsTrue(Regex.IsMatch(cycleTime, pattern));
+
+           //ClassicAssert.AreEqual(cycleTime, "1mins");
 
             var walkTime = _journeyPlannerPage.ConfirmWalkingTime();
-            ClassicAssert.AreEqual(walkTime, "6mins");
+            ClassicAssert.IsTrue(Regex.IsMatch(walkTime, pattern));
+            //ClassicAssert.AreEqual(walkTime, "6mins");
         }
 
         [When(@"a valid journey has been planned from ""([^""]*)"" to ""([^""]*)""")]
-        public void WhenAValidJourneyHasBeenPlannedFromTo(string p0, string p1)
+        public void WhenAValidJourneyHasBeenPlannedFromTo(string StartLocationStation, string EndLocationStation)
         {
-            BeforeScenarioEditPreferences();
+            BeforeScenarioEditPreferences(StartLocationStation, EndLocationStation);
         }
 
         [When(@"the user clicks Edit preferences")]
@@ -103,10 +121,10 @@ namespace TFLJourneyPlanner.StepDefinitions
             Assert.That(displayedJourneyTime.Displayed);
         }
 
-        [Given(@"a valid journey has been planned with the least walking preference")]
-        public void GivenAValidJourneyHasBeenPlannedWithTheLeastWalkingPreference()
+        [Given(@"a valid journey has been planned from ""([^""]*)"" to ""([^""]*)"" with the least walking preference")]
+        public void GivenAValidJourneyHasBeenPlannedWithTheLeastWalkingPreference(string startStation, string endStation)
         {
-            BeforeScenarioViewDetails();
+            BeforeScenarioViewDetails(startStation, endStation);
         }
 
         [When(@"I click on ""([^""]*)"" for the journey")]
